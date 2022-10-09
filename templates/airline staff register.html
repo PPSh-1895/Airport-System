@@ -1,0 +1,19 @@
+<html>
+<head>
+</head>
+<body>
+<form action="/ASregisterAuth" method="POST">
+	enter your username:<input type="text" name = "username" placeholder="username" required/> <br>
+	enter your password:<input type="password" name = "password" placeholder="password" required/><br>
+	enter your first_name:<input type="text" name = "first_name" placeholder="first_name" required/> <br>
+	enter your last_name:<input type="text" name = "last_name" placeholder="last_name" required/> <br>
+	enter date_of_birth:<input type="text" name = "date_of_birth" placeholder="date_of_birth" required/> <br>
+	enter airline_name:<input type="text" name = "airline_name" placeholder="airline_name" required/> <br>
+	<input type="submit" value = "Register" />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+<a href="/home">back to home page</a>
+</body>
+</html>

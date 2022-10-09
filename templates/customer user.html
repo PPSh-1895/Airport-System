@@ -1,0 +1,56 @@
+<html>
+<head>
+</head>
+<body>
+<!-- 0. welcome the user-->
+
+<p>Welcome {{username}},current usertype: {{usertype}}</p>
+
+
+<!-- 1. view my flights-->
+<p> you can view your ticket here</p>
+<form action="/CRflights" method="POST">
+	source city:<input type="text" name = "source city" placeholder="source city" /> <br>
+	destination city:<input type="text" name = "destination city" placeholder="destination city" /><br>
+	date:<input type="text" name="date" placeholder="date" /><br>
+	<input type="submit" value = "customer flights" />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+<!--go to customer view my flight-->
+
+
+
+
+<!-- 2.purchase for ticket and 3. search for flight-->
+<p> you can search the flight here:</p>
+<form action="/CRsearch" method="POST">
+	source city:<input type="text" name = "source city" placeholder="source city" required/> <br>
+	destination city:<input type="text" name = "destination city" placeholder="destination city" required/><br>
+	date:<input type="text" name="date" placeholder="date" required/><br>
+	<input type="submit" value = "customer search" />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+
+
+<!-- 4. barchart (this goes to barchart.txt)-->
+<p> Barchart view for past spending :</p>
+<form action="/CRbarchart" method="POST">
+	How many months ago you would like to view from (default 6):<input type="text" name = "time" placeholder="time"/> <br>
+	<input type="submit" value = "barchart" />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+
+
+<!-- 5. logout-->
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

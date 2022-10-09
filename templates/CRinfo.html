@@ -1,0 +1,22 @@
+<html>
+<head>
+</head>
+<body>
+<p> you can view the customer of the flight you choose here</p>
+<p>the flight you choose is {{flight_num}}</p>
+<table>
+	<th>customer</th>
+
+
+{% for customer in flight %}
+	<tr>
+		<td>{{customer}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+
+
+<a href="/airlinestaff">back to airline staff home page</a>
+
+</body>

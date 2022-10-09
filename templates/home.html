@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<!-- this is in fact the home page-->
+<head>
+
+</head>
+
+<body>
+<!-- search-->
+<form action="/search" method="POST">
+	source city:<input type="text" name = "source city" placeholder="source city" required/> <br>
+	destination city:<input type="text" name = "destination city" placeholder="destination city" required/><br>
+	date:<input type="text" name="date" placeholder="date" required/><br>
+	<input type="submit" value = "search" />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+
+<form action="/search " method="POST">
+	flight number:<input type="text" name = "flight number" placeholder="flight number" required/> <br>
+	arrivial date:<input type="text" name = "arrival date" placeholder="arrival date" /> <br>
+	departure date:<input type="text" name = "departure date" placeholder="departure date" /> <br>
+	you can choose either arrivial date or departure date or both.<br>
+	<input type="submit" value = "search" />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+
+{% if not message %}
+	<a href="/login">Login</a>
+	<a href="/BAregister">Booking agent register</a>
+	<a href="/CRregister">customer register</a>
+	<a href="/ASregister">airline staff Register</a>
+	
+{% endif %}
+
+</body>
+
+</html>

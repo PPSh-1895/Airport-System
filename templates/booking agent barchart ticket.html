@@ -1,0 +1,70 @@
+<html>
+<head>
+<meta charset="UTF-8" />
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+</head>
+<body>
+<div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
+<p> booking agent ranked from most sales to lower sales: {{booking_agents}}</p>
+<script language="JavaScript">
+$(document).ready(function() {  
+   var chart = {
+      type: 'column'
+   };
+   var title = {
+      text: 'top five customers based on number of ticket'   
+   };
+	var subtitle = {
+      text: ' '   
+   };
+   var xAxis = {
+      categories: {{x1}},
+      crosshair: true
+   };
+   var yAxis = {
+      min: 0,
+      title: {
+         text: 'ticket(number)'         
+      }      
+   };
+   var tooltip = {
+      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+      pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+         '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+      footerFormat: '</table>',
+      shared: true,
+      useHTML: true
+   };
+   var plotOptions = {
+      column: {
+         pointPadding: 0.2,
+         borderWidth: 0
+      }
+   };  
+   var credits = {
+      enabled: false
+   };
+   
+   var series= [{
+            name: 'ticket count',
+            data: {{y1}}
+	}]
+      
+   var json = {};   
+   json.chart = chart; 
+   json.title = title;   
+   json.subtitle = subtitle; 
+   json.tooltip = tooltip;
+   json.xAxis = xAxis;
+   json.yAxis = yAxis;  
+   json.series = series;
+   json.plotOptions = plotOptions;  
+   json.credits = credits;
+   $('#container').highcharts(json);
+  
+});
+</script>
+<a href="/bookingagent">go back to booking agent homepage</a>
+</body>
+</html>

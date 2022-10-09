@@ -1,0 +1,49 @@
+<html>
+<head>
+</head>
+<body>
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+<!--table to show the flight information-->
+<form action="/CRbook" method="POST">
+<table>
+	<th>airline_name</th>
+	<th>flight_num	</th>
+	<th>departure_airport</th>
+	<th>departure_time </th>
+	<th>arrival_airport</th>
+	<th>arrival_time</th>
+	<th>status	</th>
+	<th>	price</th>
+	<th>airplane_id</th>
+	<th>buy it or not</th>
+	
+
+
+{% for line in flight %}
+	<tr>
+		<td>{{line['airline_name']}}</td>
+		<td>{{line['flight_num']}}</td>
+		<td>{{line['departure_airport']}}</td>
+		<td>{{line['departure_time']}}</td>
+		<td>{{line['arrival_airport']}}</td>
+		<td>{{line['arrival_time']}}</td>
+		<td>{{line['status']}}</td>
+		<td>{{line['price']}}</td>
+		<td>{{line['airplane_id']}}</td>
+		<td><input type="radio" name = "ticket" value="{{line['airline_name']}},{{line['flight_num']}}" required/>buy ticket</td>
+	</tr>
+{% endfor %}
+</table>
+<input type="submit" value = "book the ticket I choose" />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+
+<a href="/customer">back to home page</a>
+
+</body>

@@ -1,0 +1,171 @@
+<html>
+<head>
+</head>
+<body>
+<!-- 0. welcome the airline staff-->
+
+<p>Welcome {{username}},current usertype: {{usertype}}</p>
+
+
+<!-- 1. view my flights-->
+<p> you can view the flight information of your airline here</p>
+<p>if you don't type anything and submit directly, you will be showing all the upcoming flights operated by the airline he/she works for the next 30 days.</p>
+<form action="/ASflights" method="POST">
+	source city:<input type="text" name = "source city" placeholder="source city"/> <br>
+	destination city:<input type="text" name = "destination city" placeholder="destination city"/><br>
+	date:<input type="text" name="date" placeholder="date"/><br>
+	<input type="submit" value = airline staff flights" />
+
+</form>
+<!--go to airline staff view my flight-->
+
+<!-- 2. create new flights-->
+<p>create new flights</p>
+<p>if you do not have admin permission, you can not create new flights</p>
+<form action="/createflights" method="POST">
+airline_name:<input type="text" name = "airline_name" value="airline_name"/><br>
+flight_num:<input type="text" name = "flight_num" value="flight_num"/><br>
+departure_airport:<input type="text" name = "departure_airport" value="departure_airport"/><br>
+departure_time:<input type="text" name = "departure_time" value="departure_time"/><br>
+arrival_airport:<input type="text" name = "arrival_airport" value="arrival_airporte"/><br>
+arrival_time:<input type="text" name = "arrival_time" value="arrival_time"/><br>
+status:<input type="text" name = "status" value="status"/><br>
+price:<input type="text" name = "price" value="price"/><br>
+airplane_id:<input type="text" name = "airplane_id" value="airplane_id"/><br>
+<input type="submit" value = "create flights" />
+
+</form>
+
+<!-- 3. change status of flights-->
+<p>change the status of flights</p>
+<p>if you do not have admin permission, you can not change status of flights</p>
+<form action="/changestatus" method="POST">
+select flight:<input type="text" name = "flight" value="flight"/><br>
+change status to upcoming:<input type="radio" name = "status" value="Upcoming"/><br>
+change status to delayed:<input type="radio" name = "status" value="Delayed"/><br>
+change status to cancelled:<input type="radio" name = "status" value="Cancelled"/><br>
+<input type="submit" value = "change status" />
+
+</form>
+
+<!-- 4. add airplane in the system-->
+<p>add airplane in the system</p>
+<p>if you do not have admin permission, you can not add airplane in the system</p>
+<form action="/addairplane" method="POST">
+imput airpane's airline:<input type="text" name = "airline_name" value="airline_name"/><br>
+imput airpane's id:<input type="text" name = "airplane_id" value="airplane_id"/><br>
+imput airpane's seat number:<input type="text" name = "seat number" value="seat number"/><br>
+<input type="submit" value = "add airplane" />
+
+</form>
+
+<!-- 5. add airport in the system-->
+<p>add airport in the system</p>
+<p>if you do not have admin permission, you can not add airport in the system</p>
+<form action="/addairport" method="POST">
+imput airport's name:<input type="text" name = "airport_name" value="airport_name"/><br>
+imput airport's city:<input type="text" name = "airport_city" value="airport_city"/><br>
+<input type="submit" value = "add airport" />
+
+</form>
+
+<!-- 6. view all the booking agents-->
+<p>you can view Top 5 booking agents based on number of tickets sales for the past month and past year here. </p>
+<form action="/choose_past" method="POST">
+select past month:<input type="radio" name = "past" value="past_month"/><br>
+select past year:<input type="radio" name = "past" value="past_year"/><br>
+<input type="submit" value = "choose_past" />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+<!--go to view top booking_agent-->
+<p>Top 5 booking agents based on the amount of commission received for the last year.</p>
+<table>
+	<th>booking agents</th>
+	<th>past year commission</th>
+{% for top5 in booking_agent %}
+	<tr>
+		<td>{{top5['email']}}</td>
+		<td>{{top5['past_year_commission']}}</td>
+		
+	</tr>
+{% endfor %}
+</table>
+
+
+<!-- 7. view frequent customers-->
+<p>the most frequent customer in last year is {{customer1}}</p>
+<p>if you want to see the flight taken by one customer(only your airline), do the following:</p>
+<form action="/check_the_flight_of_this_customer" method="POST">
+select customer:<input type="text" name = "customer_email" value="customer_email"/><br>
+<input type="submit" value = "check_the_flight_of_this_customer" />
+
+</form>
+<!--go to flight information of customer-->
+
+<!--8.view reports-->
+<p>View ticket sales report:</p>
+<form action="/total_amounts_of_ticket" method="POST">
+select beginning date:<input type="text" name = "date" value="date"/><br>
+select beginning month:<input type="text" name = "month" value="month"/><br>
+select beginning year:<input type="text" name = "year" value="year"/><br>
+<input type="submit" value = "total_amount_of_ticket" />
+
+</form>
+<!--go to airline staff barchart-->
+
+
+<!--9.comparsion of revenue earned-->
+<p>click the following link to see the comparsion of revenue earned</p>
+<a href="/piechart">go to pie chart</a>
+
+<!--go to airline staff piechart-->
+
+
+<!-- 10. view top destination-->
+<p> Find the top 3 most popular destinations for last 3 months and last year. </p>
+<p>last 3 month 3 most popular destinations</p>
+<table>
+	<th>destination</th>
+
+{% for dest in top3['last_3_month'] %}
+	<tr>
+		<td>{{dest}}</td>
+	</tr>
+{% endfor %}
+</table>
+<p>last year 3 most popular destinations</p>
+<table>
+	<th>destination</th>
+
+{% for dest in top3['last_year'] %}
+	<tr>
+		<td>{{dest}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+<!-- 11. grant new permission-->
+<p>you can only give permission to those who are in the same airline with you!</p>
+<p>you can only give other permission if you have admin permission!</p>
+<form action="/grant_permission" method="POST">
+who do you want to give permission to:<input type="text" name = "staff" value="staff"/><br>
+<input type="submit" value = "grant_permission" />
+</form>
+
+<!-- 12. add booking agents-->
+<p>you can only add booking agents if you have admin permission</p>
+<form action="/add_booking_agent" method="POST">
+his/her email:<input type="text" name = "email" value="email" required/><br>
+<input type="submit" value = "add_booking_agent" />
+<!-- booking agents who haven't been add cannot work for an airline-->
+
+<a href="/logout">back to login page</a>
+</form>
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+
+</body>
+</html>

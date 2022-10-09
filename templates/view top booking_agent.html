@@ -1,0 +1,18 @@
+<html>
+<head>
+</head>
+<body>
+<table>
+	<th>booking_agents</th>
+	<th>sales</th>
+
+{% for top5 in booking_agent %}
+	<tr>
+		<td>{{top5['email']}}</td>
+		<td>{{top5['sales']}}</td>
+	</tr>
+{% endfor %}
+
+<a href="/airlinestaff">back to airline staff user page</a>
+</table>
+</body>

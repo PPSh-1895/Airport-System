@@ -1,0 +1,77 @@
+<html>
+<head>
+</head>
+<body>
+<!-- 0. welcome the booking agent-->
+
+<p>Welcome {{username}},current usertype: {{usertype}}</p>
+
+
+<!-- 1. view my flights-->
+<p> you can view your ticket here</p>
+<p> you can view your ticket here</p>
+<form action="/BAflights" method="POST">
+	source city:<input type="text" name = "source city" placeholder="source city"/> <br>
+	destination city:<input type="text" name = "destination city" placeholder="destination city"/><br>
+	date:<input type="text" name="date" placeholder="date"/><br>
+	<input type="submit" value = "booking agent flights" />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+<!--go to booking agent view my flight-->
+
+
+
+<!-- 2.purchase for ticket and 3. search for flight-->
+<p> you can search the flight here:</p>
+<form action="/BAsearch" method="POST">
+	source city:<input type="text" name = "source city" placeholder="source city" required/> <br>
+	destination city:<input type="text" name = "destination city" placeholder="destination city" required/><br>
+	date:<input type="text" name="date" placeholder="date" required/><br>
+	<input type="submit" value = "booking agent search" />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+
+
+<!-- 4. view my commission-->
+<p>  you can view your commission here:</p>
+<form action="/commission" method="POST">
+	how long would you like to review:<input type="text" name = "time" placeholder="time"/> <br>
+	<input type="submit" value = "commission" />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+
+<!-- 5. view top customer-->
+<p> Top 5 customers based on number of tickets bought from the booking agent in the
+past 6 months: {{x1}}</p>
+<p> Top 5 customers based on amount of commission received in the last year: {{x2}}</p>
+<p>if you want to see detail information, click the link below</p>
+
+<p>booking agent barchart for ticket</p>
+<form action="/BABticket" method="POST">
+	How many days ago you would like to review from: <input type="text" name = "date" placeholder="date" required/> <br>
+	<input type="submit" value = "BAbarchartticket" />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+<form action="/BABcommission" method="POST">
+	How many days ago you would like to review from: <input type="text" name = "date" placeholder="date" required/> <br>
+	<input type="submit" value = "BAbarchartcommission" />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+
+<!-- 6. logout-->
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

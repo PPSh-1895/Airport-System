@@ -1,0 +1,39 @@
+<html>
+<head>
+</head>
+<body>
+<p> you can view the flight information of your airline here</p>
+<form action="/CRinfo" method="POST">
+<table>
+	<th>airline_name</th>
+	<th>flight_num	</th>
+	<th>departure_airport</th>
+	<th>departure_time </th>
+	<th>arrival_airport</th>
+	<th>arrival_time</th>
+	<th>status	</th>
+	<th>	price</th>
+	<th>airplane_id</th>
+	<th>detail customer information</th>
+
+
+{% for line in flight %}
+	<tr>
+		<td>{{line['airline_name']}}</td>
+		<td>{{line['flight_num']}}</td>
+		<td>{{line['departure_airport']}}</td>
+		<td>{{line['departure_time']}}</td>
+		<td>{{line['arrival_airport']}}</td>
+		<td>{{line['arrival_time']}}</td>
+		<td>{{line['status']}}</td>
+		<td>{{line['price']}}</td>
+		<td>{{line['airplane_id']}}</td>
+		<td><input type="radio" name = "customer information" value="{{line['flight_num']}}" required/>customer information</td>
+	</tr>
+{% endfor %}
+<input type="submit" value = "see the customer information I choose" />
+</table>
+<a href="/airlinestaff">go back to airline staff user</a>
+<!--go to customer information-->
+</body>
+</html>

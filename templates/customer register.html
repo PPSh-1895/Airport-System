@@ -1,0 +1,25 @@
+<html>
+<head>
+</head>
+<body>
+<form action="/CRregisterAuth" method="POST">
+	enter your name:<input type="text" name = "name" placeholder="name" required/> <br>
+	enter your email:<input type="text" name = "email" placeholder="email" required/> <br>
+	enter the password:<input type="password" name = "password" placeholder="password" required/><br>
+	enter the building_number:<input type="text" name = "building_number" placeholder="building_number" required/> <br>
+	enter street:<input type="text" name = "street" placeholder="street" required/> <br>
+	enter city:<input type="text" name = "city" placeholder="city" required/> <br>
+	enter state:<input type="text" name = "state" placeholder="state" required/> <br>
+	enter phone_number:<input type="text" name = "phone_number" placeholder="phone_number" required/> <br>
+	enter passport_number:<input type="text" name = "passport_number" placeholder="passport_number" required/> <br>
+	enter passport_expiration:<input type="text" name = "passport_expiration" placeholder="passport_expiration" required/> <br>
+	enter passport_country:<input type="text" name = "passport_country" placeholder="passport_country" required/> <br>
+	enter date_of_birth:<input type="text" name = "date_of_birth" placeholder="date_of_birth" required/> <br>
+	<input type="submit" value = “Register” />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+<a href="/home">back to home page</a>
+</body>
+</html>

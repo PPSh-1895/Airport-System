@@ -1,0 +1,29 @@
+<html>
+<head>
+</head>
+<body>
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+<p>your {{airline_name}} owns the airplane below</p>
+<table>
+	<th>airplane_id</th>
+	<th>seats</th>
+
+
+{% for airplane in airline %}
+	<tr>
+		<td>{{airplane['airplane_id']}}</td>
+		<td>{{airplane['seats']}}</td>
+	</tr>
+
+
+{% endfor %}
+</table>
+</form>
+
+<a href="/airlinestaff">back to airline staff user page</a>
+
+</body>
